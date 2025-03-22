@@ -7,7 +7,7 @@ float det(float B[m][n]);
 
 int main(){
     float detC;
-    register int i, j, k, a, b, c;
+    register int i, j, k;
     register int linha, coluna;
     int check = 1, linhas = -1, colunas = -1, m1, n1;
 
@@ -31,7 +31,7 @@ int main(){
         if(m1 == n1){
             check = 0;
         }else{
-            printf("A quantidade de colunas precisa ser igual a de linhas para usar o metode de gramm!\n");
+            printf("A quantidade de colunas precisa ser igual a de linhas para usar o metode de cramer!\n");
         }
     }
     m = m1;
@@ -47,15 +47,10 @@ int main(){
     }
     
     detC = det(matriz);
-    printf("%.2f\n", detC);
     
     for( i = 0; i<m1; i++){
         printf("Insira o termo independente B%i: ", i+1);
         scanf("%f", &fatores[i]);
-    }
-    
-    for( i = 0; i<m1; i++){
-        printf("%.2f\n", fatores[i]);
     }
 
     for(i = 0; i<m1; i++){
@@ -64,38 +59,16 @@ int main(){
         }
     }
     
-    for(i = 0; i<m1; i++){
-        for(j = 0; j<n1; j++){
-            printf("%.2f\n", matriz_temp[i][j]);
-        }
-    } 
-    
     for(i = 0; i<m1;i++){
         for(j=0;j<n1;j++){
             matriz_temp[j][i] = fatores[j];
         }
-        for(a = 0; a<m1;a++){
-            for(b=0;b<n1;b++){
-                printf("%.2f\n", matriz_temp[a][b]);
-            }
-        }
         m = m1;
         n = n1;
         dete[i] = det(matriz_temp); 
-        printf("%f+++++ ", dete[i]);
         for(k = 0; k<n1;k++){
             matriz_temp[k][i] = matriz[k][i];
         }   
-    }
-
-    for(i = 0; i<m1; i++){
-        for(j = 0; j<n1; j++){
-            printf("%.2f\n", matriz_temp[i][j]);
-        }
-    }
-
-    for(i = 0; i<m1;i++){
-        printf("%f//\n", dete[i]);
     }
    
     for(i = 0; i<m1; i++){
